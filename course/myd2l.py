@@ -87,6 +87,7 @@ def train_epoch_ch3(net,train_iter,loss,updater):
         l = loss(y_hat,y)
         if isinstance(updater,torch.optim.Optimizer):
             updater.zero_grad()                 # 清空梯度
+            l=l.mean()
             l.backward()                        # 反向传播 计算w和b的梯度，框架的loss函数不需要总和
             updater.step()                      # 对w和b进行更新，使用pytorch的模型和优化器，优化器会自动找到模型的w和b,net[0].weight和批量大小等信息
             metric.add(
