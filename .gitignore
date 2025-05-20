@@ -2,3 +2,6 @@ data/FashionMNIST
 data/
 d2l
 img/
+vehicle_pic/
+mini/
+.DS_Store
