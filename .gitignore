@@ -5,3 +5,5 @@ img/
 vehicle_pic/
 mini/
 .DS_Store
+my_model/
+my_tokenizer/
