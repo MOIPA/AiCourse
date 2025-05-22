@@ -8,3 +8,4 @@ mini/
 my_model/
 my_tokenizer/
 test-trainer/
+*.json
