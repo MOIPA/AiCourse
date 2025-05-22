@@ -9,3 +9,6 @@ my_model/
 my_tokenizer/
 test-trainer/
 *.json
+drugsCom_raw
+drug-reviews
+drug-view-json
