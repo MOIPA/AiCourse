@@ -12,3 +12,4 @@ test-trainer/
 drugsCom_raw
 drug-reviews
 drug-view-json
+*.txt
