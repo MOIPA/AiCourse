@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>云计算.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h3 id="%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E4%BB%8E%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E5%88%B0%E6%A0%B8%E5%BF%83%E5%AE%9E%E7%8E%B0">容器技术深度解析：从基础概念到核心实现</h3>
+<h4 id="%E4%B8%80%E5%AE%B9%E5%99%A8%E7%9A%84%E6%9C%AC%E8%B4%A8%E4%B8%8E%E6%A0%B8%E5%BF%83%E5%AE%9A%E4%B9%89"><strong>一、容器的本质与核心定义</strong></h4>
+<p>容器是一种基于操作系统内核的<strong>轻量级虚拟化技术</strong>，其核心在于将应用程序及其依赖的运行时环境（如系统库、配置文件等）打包成一个独立、可移植的单元（即<strong>镜像</strong>）。这种封装使得应用能够在不同环境中以<strong>标准化、可重复</strong>的方式运行，无需担心环境差异导致的兼容性问题。</p>
+<h4 id="%E4%BA%8C%E5%AE%B9%E5%99%A8%E4%B8%8E%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%9A%84%E6%9C%AC%E8%B4%A8%E5%8C%BA%E5%88%AB"><strong>二、容器与虚拟机的本质区别</strong></h4>
+<table>
+<thead>
+<tr>
+<th><strong>维度</strong></th>
+<th><strong>虚拟机（VM）</strong></th>
+<th><strong>容器（Container）</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>虚拟化层级</strong></td>
+<td>抽象并虚拟化计算机物理资源（CPU、内存、磁盘等）</td>
+<td>基于操作系统内核实现进程级资源隔离</td>
+</tr>
+<tr>
+<td><strong>模拟对象</strong></td>
+<td>完整模拟计算机硬件基础设施</td>
+<td>仅模拟操作系统运行环境（而非硬件）</td>
+</tr>
+<tr>
+<td><strong>隔离级别</strong></td>
+<td>操作系统级隔离（每个VM运行独立操作系统）</td>
+<td>进程级隔离（共享宿主机内核）</td>
+</tr>
+<tr>
+<td><strong>资源占用</strong></td>
+<td>通常需要GB级内存与存储空间（含操作系统）</td>
+<td>仅需MB级资源（仅包含应用与依赖）</td>
+</tr>
+<tr>
+<td><strong>启动速度</strong></td>
+<td>数十秒到数分钟（需加载操作系统）</td>
+<td>毫秒到秒级（直接启动应用进程）</td>
+</tr>
+</tbody>
+</table>
+<h4 id="%E4%B8%89%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF%E7%9A%84%E6%A0%B8%E5%BF%83%E4%BC%98%E5%8A%BF"><strong>三、容器技术的核心优势</strong></h4>
+<ul>
+<li><strong>轻量级与高效性</strong><br>
+仅包含应用程序与必要依赖，镜像体积通常为MB级，运行时占用资源远低于虚拟机。</li>
+<li><strong>快速部署与迁移</strong><br>
+无需复杂环境配置，通过镜像即可一键部署；支持跨环境无缝迁移（如开发→测试→生产）。</li>
+<li><strong>硬件兼容性与灵活性</strong><br>
+不依赖CPU硬件虚拟化支持（如Intel VT-x），仅需操作系统内核支持（如Linux的Namespace/Cgroup）。</li>
+<li><strong>高密度部署</strong><br>
+单台物理机可运行数百个容器，显著提升资源利用率。</li>
+</ul>
+<h4 id="%E5%9B%9B%E5%AE%B9%E5%99%A8%E9%9A%94%E7%A6%BB%E7%9A%84%E5%BF%85%E8%A6%81%E6%80%A7%E4%B8%8E%E5%AE%9E%E7%8E%B0%E6%9C%BA%E5%88%B6"><strong>四、容器隔离的必要性与实现机制</strong></h4>
+<h5 id="1-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E5%AE%B9%E5%99%A8%E9%9A%94%E7%A6%BB"><strong>1. 为什么需要容器隔离？</strong></h5>
+<ul>
+<li><strong>安全性</strong>：防止容器内恶意程序攻击宿主机或其他容器。</li>
+<li><strong>资源公平性</strong>：限制容器对CPU、内存、GPU等资源的使用，避免资源竞争导致服务崩溃。</li>
+<li><strong>环境独立性</strong>：确保容器内的文件系统、网络、进程等修改不影响其他容器或宿主机。</li>
+</ul>
+<h5 id="2-%E9%9A%94%E7%A6%BB%E6%9C%BA%E5%88%B6%E7%9A%84%E6%8A%80%E6%9C%AF%E5%AE%9E%E7%8E%B0"><strong>2. 隔离机制的技术实现</strong></h5>
+<ul>
+<li>
+<p><strong>资源隔离：Linux Cgroup（Control Groups）</strong></p>
+<ul>
+<li><strong>功能</strong>：限制、记录、隔离进程组对物理资源的使用（如CPU时间、内存大小、I/O带宽）。</li>
+<li><strong>示例</strong>：通过<code>cgroup</code>配置容器最多使用2个CPU核心或512MB内存，确保多容器环境下的资源稳定分配。</li>
+</ul>
+</li>
+<li>
+<p><strong>运行环境隔离：Linux Namespace</strong></p>
+<ul>
+<li><strong>功能</strong>：为进程提供独立的系统资源视图，实现不同容器间的资源隔离。</li>
+<li><strong>六大Namespace类型</strong>：
+<ul>
+<li><code>PID Namespace</code>：隔离进程ID空间（容器内进程看到的PID从1开始）。</li>
+<li><code>User Namespace</code>：隔离用户权限（容器内用户可映射为宿主机普通用户，提升安全性）。</li>
+<li><code>Mount Namespace</code>：隔离文件系统挂载点（容器拥有独立的目录树）。</li>
+<li><code>IPC Namespace</code>：隔离进程间通信（容器内进程仅能与同容器进程通信）。</li>
+<li><code>UTS Namespace</code>：隔离主机名与域名（每个容器可设置独立的主机标识）。</li>
+<li><code>Network Namespace</code>：隔离网络栈（容器拥有独立的IP、端口、路由表）。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>内核级隔离：Hyper-V隔离模式（Windows容器）</strong></p>
+<ul>
+<li><strong>原理</strong>：通过Hyper-V虚拟化技术为每个容器分配独立的内核实例，实现硬件级隔离。</li>
+<li><strong>优势</strong>：安全性更高，兼容更多Windows系统版本（尤其是不同内核版本的场景）。</li>
+</ul>
+</li>
+</ul>
+<h4 id="%E4%BA%94docker%E5%AE%B9%E5%99%A8%E5%BC%95%E6%93%8E%E4%BB%8E%E6%8A%80%E6%9C%AF%E5%88%B0%E7%94%9F%E6%80%81"><strong>五、Docker容器引擎：从技术到生态</strong></h4>
+<h5 id="1-docker%E7%9A%84%E5%8F%91%E5%B1%95%E4%B8%8E%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84"><strong>1. Docker的发展与技术架构</strong></h5>
+<ul>
+<li><strong>起源</strong>：2013年由dotCloud公司开源，最初基于LXC（Linux Container），后自主研发Libcontainer作为底层容器运行时。</li>
+<li><strong>核心技术</strong>：
+<ul>
+<li>基于<code>Namespace</code>和<code>Cgroup</code>实现进程与资源隔离。</li>
+<li>采用<strong>写时复制（Copy On Write, COW）</strong> 与<strong>UnionFS</strong>（如Overlay2、AUFS）实现镜像分层存储。</li>
+</ul>
+</li>
+</ul>
+<h5 id="2-docker%E7%94%9F%E6%80%81%E4%B8%8E%E7%BC%96%E6%8E%92%E5%B7%A5%E5%85%B7"><strong>2. Docker生态与编排工具</strong></h5>
+<ul>
+<li><strong>容器编排</strong>：解决大规模容器集群的管理问题，典型工具包括：
+<ul>
+<li><strong>Kubernetes（K8s）</strong>：目前最主流的容器编排平台，支持服务发现、自动扩缩容、故障恢复等。</li>
+<li><strong>Docker Swarm</strong>：Docker原生编排工具，轻量级但功能相对简单。</li>
+<li><strong>Mesos+Marathon</strong>：适用于混合部署（容器与非容器应用）的大规模集群。</li>
+</ul>
+</li>
+<li><strong>镜像仓库</strong>：Docker Hub（公共仓库）、Harbor（企业级私有仓库），支持镜像的存储、分发与版本管理。</li>
+</ul>
+<h4 id="%E5%85%AD%E9%95%9C%E5%83%8Fimage%E5%AE%B9%E5%99%A8%E7%9A%84%E9%9D%99%E6%80%81%E8%BD%BD%E4%BD%93"><strong>六、镜像（Image）：容器的静态载体</strong></h4>
+<h5 id="1-%E9%95%9C%E5%83%8F%E7%9A%84%E5%AE%9A%E4%B9%89%E4%B8%8E%E7%89%B9%E6%80%A7"><strong>1. 镜像的定义与特性</strong></h5>
+<ul>
+<li><strong>本质</strong>：只读的容器模板，包含运行应用所需的文件系统、库、配置和元数据。</li>
+<li><strong>核心特性</strong>：
+<ul>
+<li><strong>不可修改性</strong>：镜像创建后无法更改，确保环境一致性。</li>
+<li><strong>分层存储</strong>：由多个文件系统层（Layer）组成，不同镜像可共享相同层（如基础镜像层），节省存储与网络传输开销。</li>
+<li><strong>版本控制</strong>：通过标签（Tag）区分版本（如<code>nginx:1.23</code>、<code>nginx:alpine</code>）。</li>
+</ul>
+</li>
+</ul>
+<h5 id="2-%E9%95%9C%E5%83%8F%E7%9A%84%E6%9E%84%E5%BB%BA%E6%9C%BA%E5%88%B6"><strong>2. 镜像的构建机制</strong></h5>
+<ul>
+<li><strong>Base镜像（From Scratch）</strong>：
+<ul>
+<li>不依赖任何其他镜像，直接基于宿主机内核和BootFS（启动文件系统）构建，仅包含应用运行所需的最小文件。</li>
+<li><strong>场景</strong>：适用于编译型语言（如Go）的容器化，可构建无操作系统依赖的“极简镜像”。</li>
+</ul>
+</li>
+<li><strong>基于现有镜像构建</strong>：
+<ul>
+<li>通过<code>Dockerfile</code>描述构建步骤，每一步（如安装依赖、复制文件）生成一个镜像层。</li>
+<li><strong>示例Dockerfile片段</strong>：<pre class="hljs"><code><div><span class="hljs-keyword">FROM</span> ubuntu:<span class="hljs-number">22.04</span>          <span class="hljs-comment"># 基于Ubuntu基础镜像</span>
+<span class="hljs-keyword">RUN</span><span class="bash"> apt-get update &amp;&amp; apt-get install -y nginx  <span class="hljs-comment"># 安装Nginx，生成新层</span></span>
+<span class="hljs-keyword">COPY</span><span class="bash"> index.html /usr/share/nginx/html  <span class="hljs-comment"># 复制文件，生成新层</span></span>
+<span class="hljs-keyword">EXPOSE</span> <span class="hljs-number">80</span>                    <span class="hljs-comment"># 声明端口，不生成新层</span>
+<span class="hljs-keyword">CMD</span><span class="bash"> [<span class="hljs-string">"nginx"</span>, <span class="hljs-string">"-g"</span>, <span class="hljs-string">"daemon off;"</span>]  <span class="hljs-comment"># 定义启动命令，不生成新层</span></span>
+</div></code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="3-%E9%95%9C%E5%83%8F%E5%88%86%E5%B1%82%E7%9A%84%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0unionfs--%E5%86%99%E6%97%B6%E5%A4%8D%E5%88%B6"><strong>3. 镜像分层的底层实现：UnionFS + 写时复制</strong></h5>
+<ul>
+<li><strong>UnionFS（联合文件系统）</strong>：将多个分层镜像合并为一个逻辑文件系统，上层可覆盖下层文件。</li>
+<li><strong>写时复制（COW）</strong>：
+<ul>
+<li>当容器运行时需要修改镜像文件时，先将文件从只读镜像层复制到容器的可写层（Container Layer），再进行修改，避免直接修改镜像层。</li>
+<li><strong>优势</strong>：多个容器共享同一镜像时，仅存储各自的修改内容，大幅减少磁盘占用。</li>
+</ul>
+</li>
+</ul>
+<h4 id="%E4%B8%83%E5%AE%B9%E5%99%A8%E4%B8%8E%E9%95%9C%E5%83%8F%E7%9A%84%E5%85%B3%E7%B3%BB%E5%8A%A8%E6%80%81%E4%B8%8E%E9%9D%99%E6%80%81%E7%9A%84%E7%BB%9F%E4%B8%80"><strong>七、容器与镜像的关系：动态与静态的统一</strong></h4>
+<ul>
+<li><strong>运行时依赖</strong>：容器基于镜像启动，共享镜像的文件系统，但每个容器拥有独立的可写层（容器层）。</li>
+<li><strong>双向转换</strong>：
+<ul>
+<li>镜像→容器：通过<code>docker run</code>命令基于镜像启动容器，容器层记录运行时修改（如临时文件、配置变更）。</li>
+<li>容器→镜像：通过<code>docker commit</code>命令可将容器层与镜像层合并，生成新的镜像（常用于调试后保存修改）。</li>
+</ul>
+</li>
+<li><strong>底层技术关联</strong>：二者均基于UnionFS实现分层存储，镜像层为只读，容器层为可写，共同构成完整的运行环境。</li>
+</ul>
+<h4 id="%E5%85%AB%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF%E7%9A%84%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E4%B8%8E%E5%8F%91%E5%B1%95%E8%B6%8B%E5%8A%BF"><strong>八、容器技术的应用场景与发展趋势</strong></h4>
+<ul>
+<li><strong>典型场景</strong>：
+<ul>
+<li>微服务架构：每个微服务运行在独立容器中，实现服务隔离与弹性扩展。</li>
+<li>CI/CD（持续集成/持续部署）：通过容器快速构建、测试、部署应用，提升交付效率。</li>
+<li>开发环境一致性：确保开发、测试、生产环境的依赖一致，避免“在我机器上能运行”的问题。</li>
+</ul>
+</li>
+<li><strong>未来趋势</strong>：
+<ul>
+<li>与云原生（Cloud Native）深度融合，Kubernetes成为容器编排的事实标准。</li>
+<li>容器安全技术升级（如运行时安全检测、镜像漏洞扫描）。</li>
+<li>边缘计算场景落地，利用容器轻量级特性适配边缘设备资源限制。</li>
+</ul>
+</li>
+</ul>
+<p>通过以上补充，内容已涵盖容器技术的核心概念、技术原理、生态工具及应用场景，可帮助读者从理论到实践全面理解容器技术的本质与价值。</p>
+
+</body>
+</html>
