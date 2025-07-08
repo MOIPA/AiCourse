@@ -14,3 +14,5 @@ drug-reviews
 drug-view-json
 *.txt
 backup_tok
+*.safetensors
+*.onnx
